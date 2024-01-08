@@ -1,3 +1,3 @@
 # Password Manager
 ## Prerequisites
-- >Nodejs
+- `Nodejs`
