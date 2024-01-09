@@ -1,0 +1,30 @@
+{
+  "correct" : {"User":"paswword", "User2":"passwooord"},
+  "users" : 
+  {
+    "User" : [
+      {
+      "uname":"uname",
+      "password":"password",
+      "account":"nameOfAccount"
+      },
+      {
+      "uname":"uname",
+      "password":"password",
+      "account":"nameOfAccount"        
+      }
+    ],
+    "User2": [
+      {
+      "uname":"uname",
+      "password":"password",
+      "account":"nameOfAccount"
+      },
+      {
+      "uname":"uname",
+      "password":"password",
+      "account":"nameOfAccount"        
+      }
+    ]
+  }
+}
