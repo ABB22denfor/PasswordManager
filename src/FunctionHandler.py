@@ -4,8 +4,10 @@
 #Remove sys when implementation done
 import sys
 
+#For dynamically importing modules
 import importlib
 
+#Allowed function calls
 functions = ["Save", "View"]
 
 def main():
@@ -27,7 +29,7 @@ def handleInput():
 
     #Sys.argv is placeholder for InputHandler
     function = sys.argv[1]
-    
+
     #Retry input if no match
     while function not in functions:
         function = input("> ")
@@ -36,7 +38,7 @@ def handleInput():
     try:
         #Imports module with same name as input
         module = importlib.import_module(function)
-        
+
         #Run test function inside of said module
         module.test()
     except ModuleNotFoundError:
