@@ -1,5 +1,5 @@
 # Password Manager
-### A lightweight command line password manager
+#### A lightweight command line password manager
 
 ## Functionality
 - Save account information
