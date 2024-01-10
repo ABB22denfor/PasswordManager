@@ -3,12 +3,10 @@
 
 from GetData import getAccountFromFile
 
-def chooseAccount(user):
+def displayAccounts(user):
     """
-        Takes an input of a user and shows that users accounts, then returns a string of the chosen account to view
-    """
-
-    
+        Prints the accounts of the specified user    
+    """    
     # Call the getAccountFromFile, without an account to get the list of all accounts
     account_names = getAccountFromFile(user)
     
@@ -22,6 +20,14 @@ def chooseAccount(user):
         print(f"| {account}")
     print("".center(24, "-"))
 
+
+def chooseAccount(user):
+    """
+        Takes an input of a user and shows that users accounts, then returns a string of the chosen account to view
+    """
+
+    displayAccounts(user)    
+    
     # Get input from user
     chosen_account = input("View > ")
     chosen_account = chosen_account.strip()
