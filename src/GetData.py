@@ -3,21 +3,18 @@
 
 import json
 
-def getAccountFromFile(user, account=""):
+def getAccountFromFile(account=""):
     """
     Returns the information about the account for the specified user.
     If the account doesn't exist, it returns False.
     """
 
     # Reads data file and formats the input to a json object
-    with open("./GetData.json", "r") as file:
-        data = json.loads(file.read())
+    with open("./CurrentUser.json", "r") as file:
+        user_accounts = json.loads(file.read())
 
     # Defines a list for names in case of no account specified
-    account_names = []
-    
-    # Saves the list of dictionaries
-    user_accounts = data["users"][user]
+    account_names = []  
 
     # Saves formatted_data as the specified account if it exists, else sets it to False
     for account_data in user_accounts:
