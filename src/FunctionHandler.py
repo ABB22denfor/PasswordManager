@@ -1,47 +1,55 @@
 #Dennis
 '''Module for handling function calls'''
 
-#Remove sys when implementation done
-import sys
-
 #For dynamically importing modules
 import importlib
 
 #Allowed function calls
-functions = ["Save", "View"]
+functions = ["save", "view", "s", "v"]
 
+#Remove main later
 def main():
     printUserInterface()
     handleInput()
 
-#Subject to move
 def printUserInterface():
+    '''Print usable commands'''
+
     print('''
-Available commands
+Available Commands
 ------------------
-> Save new password
-> View all passwords
-------------------
-          ''')
+> save new password
+> view all passwords
+------------------''')
 
 def handleInput():
-    '''Compares user input to available modules then calls the function in appropiate module'''
+    '''Compares user input to available modules then calls the function in chosen module'''
 
-    #Sys.argv is placeholder for InputHandler
-    function = sys.argv[1]
+    function = ""
 
     #Retry input if no match
     while function not in functions:
-        function = input("> ")
+        function = input("> ").strip().lower()
 
     #Error-handling due to modules not fully iplemented
     try:
-        #Imports module with same name as input
-        module = importlib.import_module(function)
-
-        #Run test function inside of said module
-        module.test()
+        callFunctionInModule(function, function, [])
     except ModuleNotFoundError:
-        pass
+        print("MODULENOTFOUND")
 
-main()
+def callFunctionInModule(module: str, function: str, args: list):
+    '''(module->str, function->str, args->list) Call function inside of module with specified args'''
+
+    #Imports module with same name as input
+    mod = importlib.import_module(module)
+
+    print("Getting module" + module + function)
+
+    #Get function from string parameter
+    function = getattr(mod, function)
+
+    #Call function with unspecified amount of args
+    function(*args)
+
+if __name__ == "__main__":
+    main()
