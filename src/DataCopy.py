@@ -5,7 +5,7 @@ import json
 
 def copyDataToTemp(user):
     
-    with open("GetData.json", "r", encoding="utf-8") as file:
+    with open("UserData.json", "r", encoding="utf-8") as file:
         data = json.loads(file.read())
 
     user_accounts_data = data["users"][user]
