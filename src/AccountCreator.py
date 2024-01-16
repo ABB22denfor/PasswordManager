@@ -1,3 +1,4 @@
+#Dennis
 '''Module for adding a new user account'''
 import sys
 import os
@@ -6,8 +7,8 @@ def main():
     boolean = strToBool(sys.argv[1].strip())
     print(createAccount(boolean))
 
-def strToBool(inputStr: str) -> bool:
-    return bool(inputStr.lower() == "true" or inputStr.lower() == "y")
+def strToBool(input_str: str) -> bool:
+    return bool(input_str.lower() == "true" or input_str.lower() == "y")
 
 def printUI():
 
@@ -17,7 +18,7 @@ WELCOME TO ACCOUNT CREATOR 3000!
 (*required)
 ''')
 
-def createAccount(wantsUserPassword: bool) -> dict:
+def createAccount(wants_user_password: bool) -> dict:
     '''(wantsUserPassword: bool) -> dict, Create a new account with name, email and password'''
 
     printUI()
@@ -25,19 +26,19 @@ def createAccount(wantsUserPassword: bool) -> dict:
     password = ""
 
     #What is the account for? (e.g. Youtube, Spotify, Facebook)
-    accountType = input("*Application / Website: \n > ")
+    account_type = input("*Application / Website: \n > ")
 
     name = input("*Username: \n > ")
 
     email = input(" Email address: \n > ")
 
-    if wantsUserPassword:
+    if wants_user_password:
         password = input("*Password: \n > ")
     else:
         #Call createPassword with functionHandler
         pass
 
-    return printAccount({"username": name, "password": password, "email": email, "account": accountType})
+    return printAccount({"username": name, "password": password, "email": email, "account": account_type})
 
 
 def printAccount(account: dict) -> dict:
@@ -48,7 +49,7 @@ Account Details:
 - Username: {account["username"]}
 - Email: {account["email"]}
 - Password: {account["password"]}
-- For: {account["account"]}
+- Application: {account["account"]}
 --------------------------------''')
 
     if not strToBool(input("Do you want to save this account? (y/n) \n > ")):
