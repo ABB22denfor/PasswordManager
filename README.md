@@ -5,5 +5,3 @@
 - Save account information
 - View all accounts
 - Edit passwords
-
-
