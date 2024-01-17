@@ -2,10 +2,13 @@
 # Description: ?
 
 import json
+import os
 
 def copyDataToTemp(user):
+
+    absolute_path = os.path.dirname(os.path.abspath(__file__)) 
     
-    with open("UserData.json", "r", encoding="utf-8") as file:
+    with open(absolute_path + "/UserData.json", "r", encoding="utf-8") as file:
         data = json.loads(file.read())
 
     user_accounts_data = data["users"][user]
