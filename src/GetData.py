@@ -1,6 +1,7 @@
 # Lucas Axberg | GetData
 # Reads data from file/database
 
+import os
 import json
 
 def getAccountFromFile(account=""):
@@ -9,8 +10,10 @@ def getAccountFromFile(account=""):
     If the account doesn't exist, it returns False.
     """
 
+    absolute_path = os.path.dirname(os.path.abspath(__file__)) 
+    
     # Reads data file and formats the input to a json object
-    with open("./CurrentUser.json", "r") as file:
+    with open(absolute_path + "/CurrentUser.json", "r") as file:
         user_accounts = json.loads(file.read())
 
     # Defines a list for names in case of no account specified

@@ -33,6 +33,5 @@ def editPrompt(account):
 
     print("---------------------")
     new_value = input(f"Change {field_to_change} to: ")
-
-    acc[field_to_change] = new_value
-    return acc
+    
+    return [field_to_change, new_value]
