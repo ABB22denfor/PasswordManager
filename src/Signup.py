@@ -38,6 +38,7 @@ def signup():
     '''Checks if the user entered the same password twice then checks the username and then adds it to the list and saves it.'''
 
     username_input = input("Username > ")
+    # TODO: Add error handling
     password_input = input("Password > ")
     repeat_password_input = input("Repeat password > ")
 

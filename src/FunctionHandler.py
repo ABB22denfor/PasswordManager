@@ -33,6 +33,7 @@ def handleInput():
 
     #Error-handling due to modules not fully iplemented
     try:
+        # TODO: Return function call
         callFunctionInModule(function, function, [])
     except ModuleNotFoundError:
         print("MODULENOTFOUND")
@@ -49,6 +50,7 @@ def callFunctionInModule(module: str, function: str, args: list):
     function = getattr(mod, function)
 
     #Call function with unspecified amount of args
+    # TODO: Return tuple of function and args
     function(*args)
 
 if __name__ == "__main__":

@@ -17,4 +17,3 @@ def copyDataToTemp(user):
     with open(absolute_path + "/CurrentUser.json", "w", encoding="utf-8") as temp_file:
         temp_file.write(formatted_user_data)   
 
-copyDataToTemp("Bob")

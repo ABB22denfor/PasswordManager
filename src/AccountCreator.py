@@ -32,6 +32,7 @@ def createAccount(wants_user_password: bool) -> dict:
 
     email = input(" Email address: \n > ")
 
+    # TODO: Use askPasswordType from saver module
     if wants_user_password:
         password = input("*Password: \n > ")
     else:
