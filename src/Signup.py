@@ -1,9 +1,8 @@
 # Lysander
 
-import os
-import json
 from PrintInfo import removeLines
 from ReadData import readFile
+from WriteData import writeFile
 
 
 def checkUsers(user_list, username_input):
@@ -14,18 +13,6 @@ def checkUsers(user_list, username_input):
             return False
     else:
         return True
-    
-
-def saveUser(user_list):
-    '''Opens the json file with users and saves the changes.'''
-
-    path = os.path.dirname(os.path.abspath(__file__))
-
-    users = open(path + "/UserData.json", "w")
-
-    users.write(json.dumps(user_list))
-
-    users.close()
 
 
 def signup():
@@ -61,7 +48,7 @@ def signup():
 
     # adds the username as a new key and the password as its value.
     user_list["correct"][username_input] = password_input
-    saveUser(user_list)
+    writeFile("UserData.json", user_list)
     print("Account created successfully")
 
 
