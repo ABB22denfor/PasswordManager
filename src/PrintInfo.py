@@ -20,4 +20,3 @@ def removeLines(lines):
     
     print(cursor_up * lines, end="")
     
-removeLines(4)
