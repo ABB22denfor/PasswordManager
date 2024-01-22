@@ -1,13 +1,15 @@
 # Lysander
 
-
+import os
 import json
 
 # Delete later
 def getUserList():
     '''Opens the json file with users and returns a dictionary.'''
 
-    users = open("src/Users.json", "r")
+    path = os.path.dirname(os.path.abspath(__file__))
+
+    users = open(path + "/UserData.json", "r")
     user_list = json.loads(users.read())
     users.close()
     return user_list
