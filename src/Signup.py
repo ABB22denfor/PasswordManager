@@ -2,6 +2,7 @@
 
 import os
 import json
+from PrintInfo import removeLines
 
 # Delete later
 def getUserList():
@@ -20,7 +21,6 @@ def checkUsers(user_list, username_input):
     '''Checks if the username is already in use.'''
 
     for users in user_list["correct"]:
-        print(users)
         if username_input == users:
             return False
     else:
@@ -43,27 +43,37 @@ def signup():
     '''Checks if the user entered the same password twice then checks the username and then adds it to the list and saves it.'''
 
     wrong_password = True
-    username_input = input("Username > ")
+    
+    user_list = getUserList()
+
+    while True:
+        username_input = input("Username > ")
+        if checkUsers(user_list, username_input):
+            # adds the username as a new key and the password as its value.
+            break
+        print("Username already exist")
+        input("Press enter to continue...")
+        removeLines(3)
 
     while wrong_password:
         password_input = input("Password > ")
         repeat_password_input = input("Repeat password > ")
 
-        user_list = getUserList()
-
         if password_input == repeat_password_input:
             if len(password_input.strip()) >= 8:
                 wrong_password = False
-
-                if checkUsers(user_list, username_input):
-                    # adds the username as a new key and the password as its value.
-                    user_list["correct"][username_input] = password_input
-                    print(user_list)
-                    saveUser(user_list)
             else:
                 print("Password must contain at least 8 characters")
+                input("Press enter to continue...")
+                removeLines(4)
         else:
             print("Password does not match")
+            input("Press enter to continue...")
+            removeLines(4)
+
+    user_list["correct"][username_input] = password_input
+    saveUser(user_list)
+    print("Account created successfully")
 
 
 signup()
