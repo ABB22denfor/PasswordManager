@@ -1,20 +1,8 @@
 # Lysander
 
-import os
-import json
 from PrintInfo import removeLines
-
-# Delete later
-def getUserList():
-    '''Opens the json file with users and returns a dictionary.'''
-
-    path = os.path.dirname(os.path.abspath(__file__))
-
-    users = open(path + "/UserData.json", "r")
-    user_list = json.loads(users.read())
-    users.close()
-    return user_list
-
+from ReadData import readFile
+from WriteData import writeFile
 
 
 def checkUsers(user_list, username_input):
@@ -25,31 +13,18 @@ def checkUsers(user_list, username_input):
             return False
     else:
         return True
-    
-
-def saveUser(user_list):
-    '''Opens the json file with users and saves the changes.'''
-
-    path = os.path.dirname(os.path.abspath(__file__))
-
-    users = open(path + "/UserData.json", "w")
-
-    users.write(json.dumps(user_list))
-
-    users.close()
 
 
 def signup():
     '''Checks if the user entered the same password twice then checks the username and then adds it to the list and saves it.'''
 
     wrong_password = True
-    
-    user_list = getUserList()
+
+    user_list = readFile("UserData.json")
 
     while True:
         username_input = input("Username > ")
         if checkUsers(user_list, username_input):
-            # adds the username as a new key and the password as its value.
             break
         print("Username already exist")
         input("Press enter to continue...")
@@ -71,8 +46,9 @@ def signup():
             input("Press enter to continue...")
             removeLines(4)
 
+    # adds the username as a new key and the password as its value.
     user_list["correct"][username_input] = password_input
-    saveUser(user_list)
+    writeFile("UserData.json", user_list)
     print("Account created successfully")
 
 
