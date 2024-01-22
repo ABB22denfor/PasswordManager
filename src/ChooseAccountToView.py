@@ -1,11 +1,10 @@
 # Author: Lucas Axberg
-# Description: Shows the user their accounts and asks which to view
 
 from GetData import getAccountFromFile
 
 def displayAccounts():
     """
-        Prints the accounts of the specified user    
+        Prints the accounts of the current user    
     """    
     # Call the getAccountFromFile, without an account to get the list of all accounts
     account_names = getAccountFromFile()
@@ -23,9 +22,10 @@ def displayAccounts():
 
 def chooseAccount():
     """
-        Takes an input of a user and shows that users accounts, then returns a string of the chosen account to view
+        Shows the current user their accounts, asks which they want to view, and returns the selected account
     """
 
+    # Prints users accounts
     displayAccounts()    
     
     # Get input from user
