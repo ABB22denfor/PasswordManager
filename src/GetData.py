@@ -1,5 +1,4 @@
 # Lucas Axberg | GetData
-# Reads data from file/database
 
 import os
 import json
@@ -19,17 +18,21 @@ def getAccountFromFile(account=""):
     # Defines a list for names in case of no account specified
     account_names = []  
 
-    # Saves formatted_data as the specified account if it exists, else sets it to False
     for account_data in user_accounts:
+
+        # Appends account names if no account was specified
         if account == "":
             account_names.append(account_data["account"])
+
+        # Saves account information if an accounts name matches the specified account
         elif account_data["account"] == account:
             formatted_data = account_data
             break
+    # Saves False if no account name matched
     else: 
         formatted_data = False
         
-    # Returns datastructure or list of names if account is not specified
+    # Returns datastructure (or list of names if account is not specified)
     if account == "":
         return account_names
     else:
