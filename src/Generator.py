@@ -4,7 +4,6 @@ import string
 import random
 
 
-symbols = "!@#$%^&*"
 
 def generatePassword():
     '''Creates a string of all letters, symbols and numbers and then picks 16 at random for a new list. Then it makes a string from that list.'''
@@ -13,7 +12,7 @@ def generatePassword():
 
     while not finished:
 
-        random_list = string.ascii_letters + string.digits + symbols
+        random_list = string.ascii_letters + string.digits + "!@#$%^&*"
         generated_password_list = random.choices(random_list,k=16)
 
         password = ""
