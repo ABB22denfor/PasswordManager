@@ -18,16 +18,11 @@ def generatePassword():
         password = ""
         for letter in generated_password_list:
             password += letter
-        
+
         print(f"New password: {password}")
         answer = input("Do you want to use this password? (y/n) ")
 
         if answer.lower() == "y":
             finished = True
-    
+
     return password
-
-
-password = generatePassword()
-
-print(password)
