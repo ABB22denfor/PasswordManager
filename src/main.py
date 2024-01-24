@@ -1,5 +1,6 @@
 # Imports modules
 import os
+import time
 
 from login import login
 from PrintInfo import printHeader, removeLines
@@ -12,19 +13,29 @@ from FunctionHandler import printUserInterface
 os.system("cls" if os.name == "nt" else "clear")
 
 printHeader()
-print("login/signup")
+
+print("Availible commands:".center(30))
+print("".center(30, "-"))
+print("> Signup\n> Login")
 print("".center(30, "-"))
 
-mode = input("select >")
-removeLines(3)
+mode = input("Select > ")
+removeLines(6)
 
 
 while True:
     if mode == "login":
-        print("login".center(30) + "\n" + "".center(30, "-"))
-        username_input = input("Username > ")
-        password_input = input("Password > ")
+        print("Login".center(30) + "\n" + "".center(30, "-"))
+        username_input = input("Username > ").strip()
+        password_input = input("Password > ").strip()
 
+        if username_input == "" and password_input == "":
+            removeLines(2)
+            print("Would you like to signup or exit?")
+            mode = input("Select > ")
+            removeLines(4)
+            continue
+            
         if login(username_input, password_input):
             break
         
@@ -32,11 +43,19 @@ while True:
         removeLines(6)
         
     elif mode == "signup":
-        print("signup".center(30) + "\n" + "".center(30, "-"))
+        print("Signup".center(30) + "\n" + "".center(30, "-"))
         signup()
         input("Press enter to continue...")
         removeLines(7)
         mode = "login"
+
+    elif mode == "exit":
+        print("Goodbye")
+        time.sleep(0.5)
+        os.system("cls" if os.name == "nt" else "clear")
+        exit()
+        
+
     
 user = username_input
 
