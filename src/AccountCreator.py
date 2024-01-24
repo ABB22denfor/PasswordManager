@@ -2,13 +2,16 @@
 '''Module for adding a new user account'''
 import sys
 import os
+
+from FunctionHandler import callFunctionInModule
+from Saver import askPasswordType
+
 #Remove main and sys when done!
 def main():
-    boolean = strToBool(sys.argv[1].strip())
-    print(createAccount(boolean))
+    createAccount()
 
 def strToBool(input_str: str) -> bool:
-    return bool(input_str.lower() == "true" or input_str.lower() == "y")
+    return input_str.lower() == "y"
 
 def printUI():
 
@@ -18,7 +21,7 @@ WELCOME TO ACCOUNT CREATOR 3000!
 (*required)
 ''')
 
-def createAccount(wants_user_password: bool) -> dict:
+def createAccount() -> dict:
     '''(wantsUserPassword: bool) -> dict, Create a new account with name, email and password'''
 
     printUI()
@@ -32,14 +35,14 @@ def createAccount(wants_user_password: bool) -> dict:
 
     email = input(" Email address: \n > ")
 
-    # TODO: Use askPasswordType from saver module
-    if wants_user_password:
+    if askPasswordType():
         password = input("*Password: \n > ")
     else:
         #Call createPassword with functionHandler
-        pass
+        password = callFunctionInModule("Generator", "generatePassword", [])[0]()
 
-    return printAccount({"username": name, "password": password, "email": email, "account": account_type})
+    return printAccount({"username": name, "password": password,
+    "email": email, "account": account_type})
 
 
 def printAccount(account: dict) -> dict:
@@ -57,7 +60,7 @@ Account Details:
         os.system('cls' if os.name == 'nt' else 'clear')
         #Ask if want to generate password or make themselves
         #Change parameter to corresponding input
-        return createAccount(True)
+        return createAccount()
 
     return account
 
