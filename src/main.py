@@ -2,12 +2,13 @@
 import os
 import time
 
+from GetData import getAccountFromFile
 from login import login
 from PrintInfo import printHeader, removeLines
 from Signup import signup
 from DataCopy import copyDataToTemp
 from InputHandler import getInput
-from FunctionHandler import printUserInterface
+from FunctionHandler import printUserInterface, handleInput
 
 # Main code
 os.system("cls" if os.name == "nt" else "clear")
@@ -85,11 +86,23 @@ removeLines(4)
 # FUNCTION CALL LOOP
 while True:
     printUserInterface()
+
+    save = ["save", "s"]
+    view = ["view", "v"]
+    
     func = getInput()
-    if func in ["save", "view", "s", "v"]:
-        break
-    input("Command doesn't exist\nPress enter to continue...")
-    removeLines(4)
+    if func not in save and func not in view :
+        input("Command doesn't exist\nPress enter to continue...")
+        removeLines(4)
+        continue
+        
+    func_and_arg = handleInput(func)
+    a = func_and_arg[0](*func_and_arg[1])
+
+    if func in view:
+        data = getAccountFromFile(a)
+        for i in data:
+            print(f"{i.title()}: {data[i]}")
 
 removeLines(7)
 
