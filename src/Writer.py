@@ -23,7 +23,3 @@ def writeData(new_data, user):
 
 
 
-new_data = {"username": "test", "password": "test", "account": "test"}
-user = "Hej"
-
-writeData(new_data, user)
