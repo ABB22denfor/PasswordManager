@@ -18,16 +18,13 @@ def handleInput(user_input: str):
     Compares user input to available modules then calls the function in chosen module'''
 
     if user_input in ['save', 's']:
-        function = "askPasswordType"
-        module = "Saver"
+        function = "createAccount"
+        module = "AccountCreator"
     else:
         function = "chooseAccount"
         module = "ChooseAccountToView"
-    #Error-handling due to modules not fully iplemented
-    try:
-        return callFunctionInModule(module, function, [])
-    except ModuleNotFoundError:
-        return print("MODULENOTFOUND")
+
+    return callFunctionInModule(module, function, [])
 
 def callFunctionInModule(module: str, function: str, args: list):
     '''(module: str, function: str, args: list)
