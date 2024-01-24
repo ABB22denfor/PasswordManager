@@ -16,11 +16,10 @@ def copyDataToTemp(user):
     # Copies the users accounts data and formats it to a string
     try:
         user_accounts_data = data["users"][user]
-        formatted_user_data = json.dumps(user_accounts_data)
     except KeyError:
-        formatted_user_data = []
+        user_accounts_data = []
 
     # Writes the formatted string to the temp file
-    writeFile("CurrentUser.json", formatted_user_data)
+    writeFile("CurrentUser.json", user_accounts_data)
         
 
