@@ -12,5 +12,7 @@ The program also includes a random password generator, which makes strong passwo
 - Edit existing passwords
 - Generate unique random passwords
 
-##### Disclaimer
+
+
+
 ###### We are not responsible for any account information being leaked, use this program at your own risk
