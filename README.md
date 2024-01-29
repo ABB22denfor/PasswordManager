@@ -15,4 +15,4 @@ The program also includes a random password generator, which makes strong passwo
   
   
   
-###### We are not responsible for any account information being leaked, use this program at your own risk
+###### By downloading and installing this program you understand that you have read and agreed to the End-User License Agreement
