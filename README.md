@@ -11,8 +11,8 @@ The program also includes a random password generator, which makes strong passwo
 - View all your saved accounts
 - Edit existing passwords
 - Generate unique random passwords
-
-
-
-
+  
+  
+  
+  
 ###### We are not responsible for any account information being leaked, use this program at your own risk
