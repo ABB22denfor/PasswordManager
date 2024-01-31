@@ -99,6 +99,8 @@ while True:
         removeLines(4)
         continue
         
+    if func in save:
+        removeLines(7)
     func_and_arg = handleInput(func)
     account_variable = func_and_arg[0](*func_and_arg[1])
 

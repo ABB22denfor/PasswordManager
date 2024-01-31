@@ -5,14 +5,20 @@ import os
 
 from FunctionHandler import callFunctionInModule
 from Saver import askPasswordType
+from PrintInfo import removeLines
 
 def strToBool(input_str: str) -> bool:
     '''(input_str: str) Convert y/N input to True or False'''
     return input_str.lower() == "y"
 
+def printHeader():
+    print("###Account Creator###".center(30))
+    print("".center(30, "-"))
+
 
 def createAccount() -> dict:
     '''Create a new account with name, email and password'''
+    printHeader()
 
     password = ""
 
@@ -28,22 +34,26 @@ def createAccount() -> dict:
     else:
         password = callFunctionInModule("Generator", "generatePassword", [])[0]()
 
+    removeLines(11)
+
     return printAccount({"username": name, "password": password,
     "email": email, "account": account_type})
 
 
 def printAccount(account: dict) -> dict:
     "(account: dictionary of new account) -> dict, Print account details and ask user if they want to save that account"
-    print(f'''--------------------------------
-Account Details:
+    printHeader()
+    print(f'''Account Details:
 - Username: {account["username"]}
 - Email: {account["email"]}
 - Password: {account["password"]}
 - Application: {account["account"]}
 --------------------------------''')
-
+    
+    save_account_input = input("Do you want to save this account (y/n) \n > ")
+    
+    removeLines(10)
     # Start over if user not happy
-    if not strToBool(input("Do you want to save this account? (y/n) \n > ")):
+    if not strToBool(save_account_input):
         return createAccount()
-
     return account
