@@ -52,4 +52,3 @@ def signup():
     print("Account created successfully")
 
 
-signup()

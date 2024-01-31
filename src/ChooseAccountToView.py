@@ -15,10 +15,15 @@ def displayAccounts():
     print("".center(24, "-"))
 
     # Print all account names
+    if not account_names:
+        print("<NO ACCOUNT FOUND>".center(24))
+        print("".center(24, "-"))
+        return False
+    
     for account in account_names:
         print(f"| {account}")
     print("".center(24, "-"))
-
+    return True
 
 def chooseAccount():
     """
@@ -26,7 +31,8 @@ def chooseAccount():
     """
 
     # Prints users accounts
-    displayAccounts()    
+    if not displayAccounts():
+        return False    
     
     # Get input from user
     chosen_account = input("View > ")

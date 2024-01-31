@@ -17,5 +17,3 @@ def askPasswordType():
             return False
 
 
-returned = askPasswordType()
-print(returned)
