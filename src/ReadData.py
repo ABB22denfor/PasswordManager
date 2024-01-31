@@ -1,12 +1,10 @@
 # Author: Lucas Axberg
-
+'''Module for reading and formatting json data'''
 import os
 import json
 
-def readFile(file):
-    '''
-        Reads a .json file and returns the value of it in the form of dict or list
-    '''
+def readFile(file: str):
+    '''Reads a .json file and returns the value of it in the form of dict or list'''
 
     # Gets the path to the directory of all the files
     folder_path = os.path.dirname(os.path.abspath(__file__))

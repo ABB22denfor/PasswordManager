@@ -1,12 +1,10 @@
 # Author: Lucas Axberg
+'''Module for prompting user about what to change'''
 
-import os
 from PrintInfo import removeLines
 
-def editPrompt(acc):
-    """
-        Shows the user the information of an account, asks them which field they want to change, and returns the field + new value
-    """
+def editPrompt(acc: dict) -> list:
+    '''Shows the user the information of an account, asks them which field they want to change, and returns the field + new value'''
 
     while True:
 
@@ -18,13 +16,16 @@ def editPrompt(acc):
         if field_to_change in acc.keys():
             break
 
-        # Returne false if user wants to exit
+        # Return false if user wants to exit
         if field_to_change == "exit":
-            return False
+            return []
+
+        # Print error message if input was false
         print(f"Selected field {field_to_change} doesn't exist ")
         input("Press enter to continue...")
         removeLines(4)
 
+    # Prompt user for a value to change field into
     print("---------------------")
     new_value = input(f"Change {field_to_change} to: ")
     

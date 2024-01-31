@@ -1,14 +1,11 @@
 # Author: Lucas Axberg
+'''Module for copying data do temp file'''
 
 from ReadData import readFile
 from WriteData import writeFile
-import json
-import os
 
-def copyDataToTemp(user):
-    """
-        Copies the accounts and their information for a selected user to a temporary file used by other functions
-    """
+def copyDataToTemp(user: str):
+    '''Copies the accounts and their information for a selected user to a temporary file used by other functions'''
 
     # Reads the main file
     data = readFile("UserData.json")
