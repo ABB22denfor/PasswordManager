@@ -101,21 +101,37 @@ while True:
     func_and_arg = handleInput(func)
     a = func_and_arg[0](*func_and_arg[1])
 
+    # Runs if selected function is "view"
     if func in view:
+
+        # Stops of no accounts are found
         if not a:
-            input("Press enter to continue...")
-            removeLines(6)
             continue
+
+        # Gets account information
         data = getAccountFromFile(a)
-        
+
+        # Prints header
+        print("Account info:".center(30))
+        print("".center(30, "-"))
+
+        # Prints account information
         for i in data:
-            print(f"{i.title()}: {data[i]}")
-        edit_answer = input("Do you want to edit this account (y/n)")
-        
+            print(f"* {i.title()}: {data[i]}")
+        print("".center(30, "-"))
+
+        # Gets user input and clears screen
+        edit_answer = input("Do you want to edit this account (y/n) > ")
+        removeLines(len(data) + 4)
+
+        # If user doesn't want to edit, restart the loop
         if edit_answer == "n":
             continue
         
+        # Checks if an account has been selected, else restarts the loop
         account_to_change = editPrompt(data)
+        if not account_to_change:
+            continue
         editSavedValue(user,data, account_to_change)
     
 removeLines(7)
