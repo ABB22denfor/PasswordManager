@@ -1,39 +1,25 @@
-# Lucas Axberg | GetData
+# Lucas Axberg 
+'''Module for finding accounts or info about a specific account'''
 
-import os
-import json
+from ReadData import readFile
 
-def getAccountFromFile(account=""):
-    """
-    Returns the information about the account for the specified user.
-    If the account doesn't exist, it returns False.
-    """
+def getAccountFromFile(account="") -> dict:
+    '''Returns the information about the account for the specified user. If the account doesn't exist, it returns False.'''
 
-    absolute_path = os.path.dirname(os.path.abspath(__file__)) 
+    formatted_data = {}
     
-    # Reads data file and formats the input to a json object
-    with open(absolute_path + "/CurrentUser.json", "r") as file:
-        user_accounts = json.loads(file.read())
+    user_accounts = readFile("CurrentUser.json")
 
-    # Defines a list for names in case of no account specified
-    account_names = []  
-
+    # Loops through the list of accounts informations
     for account_data in user_accounts:
 
-        # Appends account names if no account was specified
+        # Add account names if no account was specified
         if account == "":
-            account_names.append(account_data["account"])
+            formatted_data[account_data["account"]] = 1
 
         # Saves account information if an accounts name matches the specified account
         elif account_data["account"] == account:
             formatted_data = account_data
             break
-    # Saves False if no account name matched
-    else: 
-        formatted_data = False
-        
-    # Returns datastructure (or list of names if account is not specified)
-    if account == "":
-        return account_names
-    else:
-        return formatted_data
+
+    return formatted_data

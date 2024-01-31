@@ -1,11 +1,10 @@
 # Author: Lucas Axberg
+'''Module for terminal based printing and clearing'''
 
 import os
 
 def printHeader():
-    """
-        Prints the header of the program
-    """
+    '''Prints the header of the program'''
 
     # Top line
     print("".center(30, "-"))
@@ -18,10 +17,8 @@ def printHeader():
     # Bottom bar
     print("".center(30, "-"))
 
-def removeLines(lines):
-    """
-        Removes a certain amount of lines above and including the current cursor position 
-    """
+def removeLines(lines: int):
+    '''Removes a certain amount of lines above and including the current cursor position'''
 
     # Defines the ANSI escape code for moving the cursor up
     cursor_up = "\033[A"
