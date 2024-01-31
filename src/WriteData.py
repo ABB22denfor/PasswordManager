@@ -4,7 +4,7 @@ import os
 import json
 
 
-def writeFile(file, data):
+def writeFile(file: str, data: list):
     '''opens a file and saves the data in it'''
 
     path = os.path.dirname(os.path.abspath(__file__))
