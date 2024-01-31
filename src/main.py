@@ -9,6 +9,8 @@ from Signup import signup
 from DataCopy import copyDataToTemp
 from InputHandler import getInput
 from FunctionHandler import printUserInterface, handleInput
+from EditPrompt import editPrompt
+from EditSavedValues import editSavedValue
 
 # Main code
 os.system("cls" if os.name == "nt" else "clear")
@@ -101,8 +103,16 @@ while True:
 
     if func in view:
         data = getAccountFromFile(a)
+        
         for i in data:
             print(f"{i.title()}: {data[i]}")
-
+        edit_answer = input("Do you want to edit this account (y/n)")
+        
+        if edit_answer == "n":
+            continue
+        
+        account_to_change = editPrompt(data)
+        editSavedValue(user,data, account_to_change)
+    
 removeLines(7)
 
