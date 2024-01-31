@@ -1,17 +1,12 @@
 # Author: Lucas Axberg
 
 import os
-from GetData import getAccountFromFile
 from PrintInfo import removeLines
 
-def editPrompt(account):
+def editPrompt(acc):
     """
         Shows the user the information of an account, asks them which field they want to change, and returns the field + new value
     """
-
-    # Stores the account dictionary to a variable
-    acc = getAccountFromFile(account)
-
 
     while True:
 
