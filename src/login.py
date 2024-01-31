@@ -1,26 +1,14 @@
 # Lysander
 
-import os
-import json
 
-# Delete later
-def getUserList():
-    '''Opens the json file with users and returns a dictionary.'''
-
-    path = os.path.dirname(os.path.abspath(__file__))
-
-    users = open(path + "/UserData.json", "r")
-    user_list = json.loads(users.read())
-    users.close()
-    return user_list
+from ReadData import readFile
 
 
-def login(username_input, password_input):
-    '''Gets username and password input from user and checks if it exists.'''
+def login(username_input: str, password_input: str) -> bool:
+    '''Gets username and password input from user and checks if it exists. Returns True if it does.'''
 
-    user_list = getUserList()
+    user_list = readFile("UserData.json")
 
-    # If it does exist it returns True else it returns False.
     try:
         if user_list["correct"][username_input] == password_input:
             return True
@@ -28,5 +16,4 @@ def login(username_input, password_input):
             return False
     except KeyError:
         return False
-
 

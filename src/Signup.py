@@ -5,8 +5,8 @@ from ReadData import readFile
 from WriteData import writeFile
 
 
-def checkUsers(user_list, username_input):
-    '''Checks if the username is already in use.'''
+def checkUsers(user_list: list, username_input: str) -> bool:
+    '''Checks if the username is already in use. Returns False if it does'''
 
     for users in user_list["correct"]:
         if username_input == users:
@@ -16,12 +16,13 @@ def checkUsers(user_list, username_input):
 
 
 def signup():
-    '''Checks if the user entered the same password twice then checks the username and then adds it to the list and saves it.'''
+    '''Asks for username and password input and checks if it is valid and then saves it'''
 
-    wrong_password = True
+    # wrong_password = True
 
     user_list = readFile("UserData.json")
 
+    # Asks for a username and runs until entered a valid username
     while True:
         username_input = input("Username > ")
         if checkUsers(user_list, username_input):
@@ -30,13 +31,14 @@ def signup():
         input("Press enter to continue...")
         removeLines(3)
 
-    while wrong_password:
+    # Asks for a password twice and checks if it is the same and if it is at least 8 characters long
+    while True:
         password_input = input("Password > ")
         repeat_password_input = input("Repeat password > ")
 
         if password_input == repeat_password_input:
             if len(password_input.strip()) >= 8:
-                wrong_password = False
+                break
             else:
                 print("Password must contain at least 8 characters")
                 input("Press enter to continue...")
@@ -46,7 +48,7 @@ def signup():
             input("Press enter to continue...")
             removeLines(4)
 
-    # adds the username as a new key and the password as its value.
+    # adds the username as a new key and the password as its value and saves it to UserData.json
     user_list["correct"][username_input] = password_input
     writeFile("UserData.json", user_list)
     print("Account created successfully")
