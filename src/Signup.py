@@ -18,8 +18,6 @@ def checkUsers(user_list: list, username_input: str) -> bool:
 def signup():
     '''Asks for username and password input and checks if it is valid and then saves it'''
 
-    # wrong_password = True
-
     user_list = readFile("UserData.json")
 
     # Asks for a username and runs until entered a valid username

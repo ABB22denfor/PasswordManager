@@ -2,6 +2,7 @@
 
 import string
 import random
+from PrintInfo import removeLines
 
 
 def generatePassword() -> str:
@@ -21,5 +22,6 @@ def generatePassword() -> str:
 
         if answer.lower() == "y":
             break
+        removeLines(2)
 
     return password
