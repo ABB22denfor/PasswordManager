@@ -2,7 +2,10 @@
 
 from PrintInfo import removeLines
 
-def verifier(command_list, question, error_message):
+def verifier(command_list: list, question: str, error_message:str) -> str:
+    '''Verifies if the input is in the command_list and returns the input when it is'''
+
+    #Checks if the input is the same as a valid command
     while True:
         answer = input(question)
 

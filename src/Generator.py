@@ -2,16 +2,14 @@
 
 import string
 import random
+from PrintInfo import removeLines
 
 
+def generatePassword() -> str:
+    '''Creates a string of all letters, symbols and numbers and then picks 16 at random for a new list. Then it makes a string from that list and returns it.'''
 
-def generatePassword():
-    '''Creates a string of all letters, symbols and numbers and then picks 16 at random for a new list. Then it makes a string from that list.'''
-
-    finished = False
-
-    while not finished:
-
+    while True:
+        # Adds the letters, numbers and symbols to a variable and then choose 16 of them
         random_list = string.ascii_letters + string.digits + "!@#$%^&*"
         generated_password_list = random.choices(random_list,k=16)
 
@@ -23,6 +21,7 @@ def generatePassword():
         answer = input("Do you want to use this password? (y/n) ")
 
         if answer.lower() == "y":
-            finished = True
+            break
+        removeLines(2)
 
     return password

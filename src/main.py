@@ -11,6 +11,7 @@ from InputHandler import getInput
 from FunctionHandler import printUserInterface, handleInput
 from EditPrompt import editPrompt
 from EditSavedValues import editSavedValue
+from Writer import writeData
 
 # Main code
 os.system("cls" if os.name == "nt" else "clear")
@@ -24,7 +25,7 @@ print("> Signup\n> Login")
 print("".center(30, "-"))
 
 # Asks user for input and removes all lines except for header
-mode = input("Select > ")
+mode = input("Select > ").lower()
 removeLines(6)
 
 # LOGIN LOOP
@@ -99,24 +100,45 @@ while True:
         continue
         
     func_and_arg = handleInput(func)
-    a = func_and_arg[0](*func_and_arg[1])
+    account_variable = func_and_arg[0](*func_and_arg[1])
 
+    # Runs if selected function is "view"
     if func in view:
-        if not a:
-            input("Press enter to continue...")
-            removeLines(6)
+
+        # Stops of no accounts are found
+        if not account_variable:
             continue
-        data = getAccountFromFile(a)
-        
+
+        # Gets account information
+        data = getAccountFromFile(account_variable)
+
+        # Prints header
+        print("Account info:".center(30))
+        print("".center(30, "-"))
+
+        # Prints account information
         for i in data:
-            print(f"{i.title()}: {data[i]}")
-        edit_answer = input("Do you want to edit this account (y/n)")
-        
+            print(f"* {i.title()}: {data[i]}")
+        print("".center(30, "-"))
+
+        # Gets user input and clears screen
+        edit_answer = input("Do you want to edit this account (y/n) > ")
+        removeLines(len(data) + 4)
+
+        # If user doesn't want to edit, restart the loop
         if edit_answer == "n":
             continue
         
+        # Checks if an account has been selected, else restarts the loop
         account_to_change = editPrompt(data)
+        if not account_to_change:
+            continue
         editSavedValue(user,data, account_to_change)
+
+    elif func in save:
+        writeData(account_variable, user)
+
     
+          
 removeLines(7)
 
