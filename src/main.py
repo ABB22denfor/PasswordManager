@@ -102,6 +102,10 @@ while True:
     a = func_and_arg[0](*func_and_arg[1])
 
     if func in view:
+        if not a:
+            input("Press enter to continue...")
+            removeLines(6)
+            continue
         data = getAccountFromFile(a)
         
         for i in data:
