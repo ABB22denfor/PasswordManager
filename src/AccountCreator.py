@@ -43,7 +43,6 @@ Account Details:
 --------------------------------''')
 
     if not strToBool(input("Do you want to save this account? (y/n) \n > ")):
-        os.system('cls' if os.name == 'nt' else 'clear')
         return createAccount()
 
     return account
