@@ -8,7 +8,7 @@ The program also includes a random password generator, which makes strong passwo
 
 ## Dependencies
 - `Python 3.10.12`
-- `PyJWT 2.3.0`
+- `PyJWT 2.3.0`  
 
 ## Functionality
 - Save your account information
