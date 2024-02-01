@@ -8,7 +8,7 @@ from Saver import askPasswordType
 from PrintInfo import removeLines
 
 def strToBool(input_str: str) -> bool:
-    '''(input_str: str) Convert y/N input to True or False'''
+    '''Convert y/N input to True or False'''
     return input_str.lower() == "y"
 
 def printHeader():

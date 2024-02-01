@@ -96,7 +96,7 @@ while True:
     func = getInput()
     if func not in save and func not in view :
         input("Command doesn't exist\nPress enter to continue...")
-        removeLines(4)
+        removeLines(9)
         continue
         
     if func in save:

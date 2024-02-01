@@ -10,8 +10,8 @@ def printUserInterface():
 
     print('''Available Commands
 ------------------
-> save new password
-> view all passwords
+>s | save new password
+>v | view all passwords
 ------------------''')
 
 def handleInput(user_input: str):
