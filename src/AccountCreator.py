@@ -1,7 +1,6 @@
 #Author: Dennis Forslund
 
 '''Module for adding a new user account'''
-import os
 
 from FunctionHandler import callFunctionInModule
 from Saver import askPasswordType
@@ -49,9 +48,9 @@ def printAccount(account: dict) -> dict:
 - Password: {account["password"]}
 - Application: {account["account"]}
 --------------------------------''')
-    
+
     save_account_input = input("Do you want to save this account (y/n) \n > ")
-    
+
     removeLines(10)
     # Start over if user not happy
     if not strToBool(save_account_input):
