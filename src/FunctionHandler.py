@@ -1,4 +1,5 @@
-#Dennis
+#Author: Dennis Forslund
+
 '''Module for handling function calls'''
 
 #For dynamically importing modules
@@ -9,14 +10,15 @@ def printUserInterface():
 
     print('''Available Commands
 ------------------
-> save new password
-> view all passwords
+>s | save new password
+>v | view all passwords
 ------------------''')
 
 def handleInput(user_input: str):
-    '''(user_input: str)
+    '''(user_input: save or view from InputHandler)
     Compares user input to available modules then calls the function in chosen module'''
-
+    
+    # Hard coded values, error checking handled in main 
     if user_input in ['save', 's']:
         function = "createAccount"
         module = "AccountCreator"
@@ -27,7 +29,7 @@ def handleInput(user_input: str):
     return callFunctionInModule(module, function, [])
 
 def callFunctionInModule(module: str, function: str, args: list):
-    '''(module: str, function: str, args: list)
+    '''(module: name of module containing function, function: name of function, args: list of arguments to be used with function)
     Call function inside of module with specified args'''
 
     #Imports module with same name as input
