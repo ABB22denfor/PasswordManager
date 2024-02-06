@@ -125,7 +125,7 @@ while True:
 
         # Gets user input and clears screen
         edit_answer = input("Do you want to edit this account (y/n) > ")
-        removeLines(len(data) + 4)
+        removeLines(1)
 
         # If user doesn't want to edit, restart the loop
         if edit_answer == "n":
