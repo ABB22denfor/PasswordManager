@@ -13,116 +13,146 @@ from EditPrompt import editPrompt
 from EditSavedValues import editSavedValue
 from Writer import writeData
 
+# Global variables
+global mode
+global user
+global save
+global view 
 
 def firstStep():
     # Main code
-    os.system("cls" if os.name == "nt" else "clear")
+    try:
+        global mode
+    
+        os.system("cls" if os.name == "nt" else "clear")
 
-    printHeader()
+        printHeader()
 
-    # Prints the availible commands for the first page
-    print("Availible commands:".center(30))
-    print("".center(30, "-"))
-    print("> Signup\n> Login")
-    print("".center(30, "-"))
+        # Prints the availible commands for the first page
+        print("Availible commands:".center(30))
+        print("".center(30, "-"))
+        print("> Signup\n> Login")
+        print("".center(30, "-"))
 
-    # Asks user for input and removes all lines except for header
-    mode = input("Select > ").lower()
-    removeLines(6)
+        # Asks user for input and removes all lines except for header
+        mode = input("Select > ").lower()
+        removeLines(6)
+    except KeyboardInterrupt:
+        os.system("cls" if os.name == "nt" else "clear")
+        exit()
+    secondStep()
 
-    secondStep(mode)
-
-def secondStep(external_mode):
+def secondStep():
     # LOGIN LOOP
-    mode = external_mode
+    global mode
+    try:
+        while True:
+            if mode == "login":
+                # Prints login header
+                print("Login".center(30) + "\n" + "".center(30, "-"))
 
-    while True:
-        if mode == "login":
-            # Prints login header
-            print("Login".center(30) + "\n" + "".center(30, "-"))
+                # Asks user for username and password
+                username_input = input("Username > ").strip()
+                password_input = input("Password > ").strip()
 
-            # Asks user for username and password
-            username_input = input("Username > ").strip()
-            password_input = input("Password > ").strip()
+                # If both are blank, ask the user if they want to exit or create an account
+                if username_input == "" and password_input == "":
+                    removeLines(2)
+                    print("Would you like to signup or exit?")
+                    mode = input("Select > ")
+                    removeLines(4)
+                    continue
 
-            # If both are blank, ask the user if they want to exit or create an account
-            if username_input == "" and password_input == "":
-                removeLines(2)
-                print("Would you like to signup or exit?")
-                mode = input("Select > ")
-                removeLines(4)
-                continue
+                # If username and password is correct, exit the loop
+                if login(username_input, password_input):
+                    break
 
-            # If username and password is correct, exit the loop
-            if login(username_input, password_input):
-                break
-
-            # If username or password isnt correct, explain it to user and start over the loop
-            input("Username or password doesn't match\nPress enter to continue...")
-            removeLines(6)
+                # If username or password isnt correct, explain it to user and start over the loop
+                input("Username or password doesn't match\nPress enter to continue...")
+                removeLines(6)
     
-        elif mode == "signup":
+            elif mode == "signup":
 
-            # Print signup header
-            print("Signup".center(30) + "\n" + "".center(30, "-"))
+                # Print signup header
+                print("Signup".center(30) + "\n" + "".center(30, "-"))
 
-            # Call signup wich creates an account and saves it
-            signup()
+                # Call signup wich creates an account and saves it
+                signup()
 
-            # Wait for user input, clear the screen and change mode to login
-            input("Press enter to continue...")
-            removeLines(7)
-            mode = "login"
+                # Wait for user input, clear the screen and change mode to login
+                input("Press enter to continue...")
+                removeLines(7)
+                mode = "login"
 
-        elif mode == "exit":
+            elif mode == "exit":
     
-            # Print goodbye, waits, then clears screen and exit program
-            print("Goodbye")
-            time.sleep(0.5)
-            os.system("cls" if os.name == "nt" else "clear")
-            exit()
+                # Print goodbye, waits, then clears screen and exit program
+                print("Goodbye")
+                time.sleep(0.5)
+                os.system("cls" if os.name == "nt" else "clear")
+                exit()
         
 
 
-    # Saves username for other functions
-    user = username_input
+        # Saves username for other functions
+        global user
+        user = username_input
 
-    # Creates a temporary file with the information on the users accounts
-    copyDataToTemp(user)
+        # Creates a temporary file with the information on the users accounts
+        copyDataToTemp(user)
 
-    # Clears the lines from the login "page"
-    removeLines(4)
+        # Clears the lines from the login "page"
+        removeLines(4)
 
-    thirdStep(user)
+    except KeyboardInterrupt:
+        os.system("cls" if os.name == "nt" else "clear")
+        printHeader()       
+        firstStep()
+
+    thirdStep()
+
+def thirdStep():
+    global mode
+    global user
+    global save
+    global view
     
-
-def thirdStep(external_user):
-
-    user = external_user
-
     # FUNCTION CALL LOOP
-    while True:
-        printUserInterface()
+    try:
+        while True:
+            printUserInterface()
 
-        save = ["save", "s"]
-        view = ["view", "v"]
+            save = ["save", "s"]
+            view = ["view", "v"]
     
-        func = getInput()
-        if func not in save and func not in view :
-            input("Command doesn't exist\nPress enter to continue...")
-            removeLines(9)
-            continue
-        
-        if func in save:
-            removeLines(7)
+            func = getInput()
+            
+            if func in save:
+                removeLines(7)
+                
+            if func not in save and func not in view :
+                input("Command doesn't exist\nPress enter to continue...")
+                removeLines(9)
+                continue
+            else:
+                break  
 
-        fourthStep(func, user, view, save)
+    except KeyboardInterrupt:
+        os.system("cls" if os.name == "nt" else "clear")
+        printHeader()       
+        secondStep()
 
-def fourthStep(external_func, external_user, external_view, external_save):
-    user = external_user
+    
+    fourthStep(func)
+    
+def fourthStep(external_func):
     func = external_func
-    view = external_view
-    save = external_save
+
+    global user
+    global mode
+    global view
+    global save
+        
     try:
         while True:        
             func_and_arg = handleInput(func)
@@ -168,9 +198,11 @@ def fourthStep(external_func, external_user, external_view, external_save):
           
         removeLines(7)
     except KeyboardInterrupt:
-        print()
-        removeLines(1)
-        thirdStep(user)
+        os.system("cls" if os.name == "nt" else "clear")
+        printHeader()       
+        thirdStep()
 
-        
-thirdStep("Jeff")
+
+user = "Jeff"
+mode = "login"
+thirdStep()
