@@ -174,24 +174,27 @@ def fourthStep(external_func):
 
                 # Gets user input and clears screen
                 edit_answer = input("Do you want to edit this account (y/n) > ")
+                
                 removeLines(1)
-
                 # If user doesn't want to edit, restart the loop
-                if edit_answer == "n":
+                if edit_answer != "y":
                     continue
-        
+                
+                
                 # Checks if an account has been selected, else restarts the loop
                 account_to_change = editPrompt(data)
                 if not account_to_change:
                     continue
                 editSavedValue(user,data, account_to_change)
-
+                removeLines(11)
+                                
             elif func in save:
                 writeData(account_variable, user)
 
     
           
-        removeLines(7)
+            thirdStep()
+        
     except KeyboardInterrupt:
         os.system("cls" if os.name == "nt" else "clear")
         printHeader()       
