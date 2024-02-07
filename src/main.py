@@ -66,13 +66,6 @@ def secondStep():
                 username_input = input("Username > ").strip()
                 password_input = input("Password > ").strip()
 
-                # If both are blank, ask the user if they want to exit or create an account
-                if username_input == "" and password_input == "":
-                    removeLines(2)
-                    print("Would you like to signup or exit?")
-                    mode = input("Select > ")
-                    removeLines(4)
-                    continue
 
                 # If username and password is correct, exit the loop
                 if login(username_input, password_input):
@@ -94,15 +87,6 @@ def secondStep():
                 input("Press enter to continue...")
                 removeLines(7)
                 mode = "login"
-
-            elif mode == "exit":
-    
-                # Print goodbye, waits, then clears screen and exit program
-                print("Goodbye")
-                time.sleep(0.5)
-                os.system("cls" if os.name == "nt" else "clear")
-                exit()
-        
 
 
         # Saves username for other functions
