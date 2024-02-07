@@ -28,18 +28,29 @@ def firstStep():
 
         printHeader()
 
-        # Prints the availible commands for the first page
-        print("Availible commands:".center(30))
-        print("".center(30, "-"))
-        print("> Signup\n> Login")
-        print("".center(30, "-"))
+        while True:
+            # Prints the availible commands for the first page
+            print("Availible commands:".center(30))
+            print("".center(30, "-"))
+            print("> Signup\n> Login")
+            print("".center(30, "-"))
 
-        # Asks user for input and removes all lines except for header
-        mode = input("Select > ").lower()
-        removeLines(6)
+            # Asks user for input and removes all lines except for header
+            mode = input("Select > ").lower().strip()
+
+            if mode == "login" or mode == "signup":
+                break
+
+            print(f"Mode <{mode}> is not a valid mode")
+            input("Press enter to continue...")
+            
+            removeLines(8)
+            
     except KeyboardInterrupt:
         os.system("cls" if os.name == "nt" else "clear")
         exit()
+
+    removeLines(6)
     secondStep()
 
 def secondStep():
@@ -205,4 +216,4 @@ def fourthStep(external_func):
 
 user = "Jeff"
 mode = "login"
-thirdStep()
+firstStep()
