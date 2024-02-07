@@ -13,22 +13,28 @@ from EditPrompt import editPrompt
 from EditSavedValues import editSavedValue
 from Writer import writeData
 
+
 # Global variables
 global mode
 global user
 global save
 global view 
 
+
+# Main code
+
 def firstStep():
-    # Main code
+    '''The first part of the main code'''
+
     try:
         global mode
-    
-        os.system("cls" if os.name == "nt" else "clear")
 
+        # Clears screeen and prints header    
+        os.system("cls" if os.name == "nt" else "clear")
         printHeader()
 
         while True:
+
             # Prints the availible commands for the first page
             print("Availible commands:".center(30))
             print("".center(30, "-"))
@@ -38,34 +44,46 @@ def firstStep():
             # Asks user for input and removes all lines except for header
             mode = input("Select > ").lower().strip()
 
+            # Breaks the loop if mode is correct
             if mode == "login" or mode == "signup":
                 break
 
+            # Prints error message and restarts loop if mode isn't correct
             print(f"Mode <{mode}> is not a valid mode")
             input("Press enter to continue...")
-            
             removeLines(8)
-            
+
+    # Runs if <ctrl><c> is pressed        
     except KeyboardInterrupt:
+
+        # Clears screen and exits
         os.system("cls" if os.name == "nt" else "clear")
         exit()
 
+    # Clears screen and runs next part
     removeLines(6)
     secondStep()
 
+
+
 def secondStep():
-    # LOGIN LOOP
+    '''The second part of the main code'''
+
+    # Use global variable "mode"
     global mode
+
     try:
         while True:
+
+            # Checks if the mode is "login"
             if mode == "login":
+                
                 # Prints login header
                 print("Login".center(30) + "\n" + "".center(30, "-"))
 
                 # Asks user for username and password
                 username_input = input("Username > ").strip()
                 password_input = input("Password > ").strip()
-
 
                 # If username and password is correct, exit the loop
                 if login(username_input, password_input):
@@ -74,7 +92,8 @@ def secondStep():
                 # If username or password isnt correct, explain it to user and start over the loop
                 input("Username or password doesn't match\nPress enter to continue...")
                 removeLines(6)
-    
+
+            # Checks if mode is "signup"    
             elif mode == "signup":
 
                 # Print signup header
@@ -89,60 +108,85 @@ def secondStep():
                 mode = "login"
 
 
-        # Saves username for other functions
-        global user
-        user = username_input
 
-        # Creates a temporary file with the information on the users accounts
-        copyDataToTemp(user)
-
-        # Clears the lines from the login "page"
-        removeLines(4)
-
+    # Runs if <ctrl><c> is pressed        
     except KeyboardInterrupt:
+
+        # Clears screen, prints header and calls the previous part of the main code
         os.system("cls" if os.name == "nt" else "clear")
         printHeader()       
         firstStep()
 
+
+    # Saves username for other functions when loop is done
+    global user
+    user = username_input
+
+    # Creates a temporary file with the information on the users accounts
+    copyDataToTemp(user)
+
+    # Clears the lines from the login "page"
+    removeLines(4)
+
+    # Calls the next part of the main code
     thirdStep()
 
+
+
 def thirdStep():
+    '''The third step of the main code'''
+
+    # Use global variables mode, user, save, view
     global mode
     global user
     global save
     global view
     
-    # FUNCTION CALL LOOP
     try:
         while True:
+
+            # Prints the availible functions to the user
             printUserInterface()
 
+            # Saves 2 lists of availible commands to the global variables
             save = ["save", "s"]
             view = ["view", "v"]
-    
+
+            # Calls the input handler and saves the result in a variable
             func = getInput()
-            
+
+            # If the function is a save command, it removes lines
             if func in save:
                 removeLines(7)
-                
+
+            # If the function does not exist, print error message and restart the loop
             if func not in save and func not in view :
                 input("Command doesn't exist\nPress enter to continue...")
                 removeLines(9)
                 continue
+
+            # If the function exists, it exits the loop
             else:
                 break  
 
+
+    # Runs if <ctrl><c> is pressed        
     except KeyboardInterrupt:
+
+        # Clears screen, prints header and calls the previous part of the main code
         os.system("cls" if os.name == "nt" else "clear")
         printHeader()       
         secondStep()
 
-    
+    # Calls the next part if the main code
     fourthStep(func)
-    
-def fourthStep(external_func):
-    func = external_func
 
+
+    
+def fourthStep(func):
+    '''Fourth step of the main code'''
+
+    # Use global variables user, mode, view, save
     global user
     global mode
     global view
@@ -150,6 +194,8 @@ def fourthStep(external_func):
         
     try:
         while True:        
+
+            # Gets the function and arguments from the function handler, and calls the function with those aruments   
             func_and_arg = handleInput(func)
             account_variable = func_and_arg[0](*func_and_arg[1])
 
@@ -161,39 +207,42 @@ def fourthStep(external_func):
                     continue
 
                 # Gets account information
-                data = getAccountFromFile(account_variable)
+                account_info = getAccountFromFile(account_variable)
 
                 # Prints header
                 print("Account info:".center(30))
                 print("".center(30, "-"))
 
                 # Prints account information
-                for i in data:
-                    print(f"* {i.title()}: {data[i]}")
+                for i in account_info:
+                    print(f"* {i.title()}: {account_info[i]}")
                 print("".center(30, "-"))
+
+
+# TODO: Remove                 
 
                 # Gets user input and clears screen
                 edit_answer = input("Do you want to edit this account (y/n) > ")
-                
                 removeLines(1)
+
                 # If user doesn't want to edit, restart the loop
                 if edit_answer != "y":
                     continue
                 
-                
                 # Checks if an account has been selected, else restarts the loop
-                account_to_change = editPrompt(data)
+                account_to_change = editPrompt(account_info)
                 if not account_to_change:
                     continue
-                editSavedValue(user,data, account_to_change)
+                editSavedValue(user,account_info, account_to_change)
                 removeLines(11)
-                                
-            elif func in save:
-                writeData(account_variable, user)
 
-    
-          
+            # Checks if function is "save" 
+            elif func in save:
+
+                # Calls the write data accont with the returned informaion
+                writeData(account_variable, user)
             thirdStep()
+          
         
     except KeyboardInterrupt:
         os.system("cls" if os.name == "nt" else "clear")
@@ -201,6 +250,8 @@ def fourthStep(external_func):
         thirdStep()
 
 
-user = "Jeff"
-mode = "login"
+
+
+
+# Calls the first function, wich will start the entire program
 firstStep()
