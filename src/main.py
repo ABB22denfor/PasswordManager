@@ -1,6 +1,5 @@
 # Imports modules
 import os
-import time
 
 from GetData import getAccountFromFile
 from login import login
@@ -9,8 +8,6 @@ from Signup import signup
 from DataCopy import copyDataToTemp
 from InputHandler import getInput
 from FunctionHandler import printUserInterface, handleInput
-from EditPrompt import editPrompt
-from EditSavedValues import editSavedValue
 from EditSavedValues import editValue
 from Writer import writeData
 
