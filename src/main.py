@@ -10,13 +10,12 @@ from InputHandler import getInput
 from FunctionHandler import printUserInterface, handleInput
 from EditSavedValues import editValue
 from Writer import writeData
-
+from Delete import deleteAccountFunction
+from CheckFunction import checkFunction
 
 # Global variables
 global mode
 global user
-global save
-global view 
 
 
 # Main code
@@ -134,11 +133,9 @@ def secondStep():
 def thirdStep():
     '''The third step of the main code'''
 
-    # Use global variables mode, user, save, view
+    # Use global variables mode, user  
     global mode
     global user
-    global save
-    global view
     
     try:
         while True:
@@ -147,18 +144,16 @@ def thirdStep():
             printUserInterface()
 
             # Saves 2 lists of availible commands to the global variables
-            save = ["save", "s"]
-            view = ["view", "v"]
 
             # Calls the input handler and saves the result in a variable
             func = getInput()
 
             # If the function is a save command, it removes lines
-            if func in save:
+            if checkFunction(func, 2):
                 removeLines(7)
 
             # If the function does not exist, print error message and restart the loop
-            if func not in save and func not in view :
+            if not checkFunction(func):
                 input("Command doesn't exist\nPress enter to continue...")
                 removeLines(9)
                 continue
@@ -184,11 +179,9 @@ def thirdStep():
 def fourthStep(func):
     '''Fourth step of the main code'''
 
-    # Use global variables user, mode, view, save
+    # Use global variables user, mode  
     global user
     global mode
-    global view
-    global save
         
     try:
         while True:        
@@ -198,7 +191,7 @@ def fourthStep(func):
             account_variable = func_and_arg[0](*func_and_arg[1])
 
             # Runs if selected function is "view"
-            if func in view:
+            if checkFunction(func, 1):
 
                 # Stops of no accounts are found
                 if not account_variable:
@@ -227,19 +220,17 @@ def fourthStep(func):
                 if edit_answer != "y":
                     continue
                 
-                if not editValue(user, data):
+                if not editValue(user, account_info):
                     continue
                 
                 # Checks if an account has been selected, else restarts the loop
                                 
-            elif func in save:
-                writeData(account_variable, user)
-
             # Checks if function is "save" 
-            elif func in save:
+            elif checkFunction(func, 2):
 
                 # Calls the write data accont with the returned informaion
                 writeData(account_variable, user)
+
             thirdStep()
           
         
