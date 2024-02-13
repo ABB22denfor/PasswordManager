@@ -2,15 +2,18 @@
 #### A lightweight command-line password manager
 
 ## Description
-This command-line based password manager is built entirely using Python 3.10.12.
-It makes storing your passwords locally very easy.
-The program also includes a random password generator, which makes strong passwords easily accessible.
+This Command-Line Password Manager is a Python application built with the PyJWT library,
+enabling users to securely manage their account information right from the terminal.
+With this tool, users can efficiently save their account credentials,
+view all existing accounts,
+edit passwords for existing accounts,
+and generate unique and random passwords with ease.
 
 ## Dependencies
 - `Python 3.10.12`
-- `PyJWT 2.3.0`  
+- `PyJWT 2.3.0`
 
-## Functionality
+## Features
 - Save your account information
 - View all your saved accounts
 - Edit existing passwords

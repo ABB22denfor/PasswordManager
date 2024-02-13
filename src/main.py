@@ -1,6 +1,5 @@
 # Imports modules
 import os
-import time
 
 from GetData import getAccountFromFile
 from login import login
@@ -9,8 +8,7 @@ from Signup import signup
 from DataCopy import copyDataToTemp
 from InputHandler import getInput
 from FunctionHandler import printUserInterface, handleInput
-from EditPrompt import editPrompt
-from EditSavedValues import editSavedValue
+from EditSavedValues import editValue
 from Writer import writeData
 
 
@@ -229,12 +227,13 @@ def fourthStep(func):
                 if edit_answer != "y":
                     continue
                 
-                # Checks if an account has been selected, else restarts the loop
-                account_to_change = editPrompt(account_info)
-                if not account_to_change:
+                if not editValue(user, data):
                     continue
-                editSavedValue(user,account_info, account_to_change)
-                removeLines(11)
+                
+                # Checks if an account has been selected, else restarts the loop
+                                
+            elif func in save:
+                writeData(account_variable, user)
 
             # Checks if function is "save" 
             elif func in save:
