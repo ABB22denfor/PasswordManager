@@ -47,6 +47,8 @@ def editSavedValue(account_name: str, account_data: dict, edited_value: list):
     copyDataToTemp(account_name)
 
 def editValue(user: str, data: dict) -> bool:
+    '''(user: name of the logged in user, data: dict of the account subject to change)'''
+    
     account_to_change = editPrompt(data)
     if not account_to_change:
         return False
