@@ -1,6 +1,5 @@
 # Imports modules
 import os
-import time
 
 from GetData import getAccountFromFile
 from login import login
@@ -9,8 +8,7 @@ from Signup import signup
 from DataCopy import copyDataToTemp
 from InputHandler import getInput
 from FunctionHandler import printUserInterface, handleInput
-from EditPrompt import editPrompt
-from EditSavedValues import editSavedValue
+from EditSavedValues import editValue
 from Writer import writeData
 
 # Global variables
@@ -180,13 +178,10 @@ def fourthStep(external_func):
                 if edit_answer != "y":
                     continue
                 
+                if not editValue(user, data):
+                    continue
                 
                 # Checks if an account has been selected, else restarts the loop
-                account_to_change = editPrompt(data)
-                if not account_to_change:
-                    continue
-                editSavedValue(user,data, account_to_change)
-                removeLines(11)
                                 
             elif func in save:
                 writeData(account_variable, user)
