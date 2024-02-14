@@ -3,7 +3,7 @@
 
 from ReadData import readFile
 
-def getAccountFromFile(account="") -> dict:
+def getAccountFromFile(account=9999) -> dict:
     '''Returns the information about the account for the specified user. If the account doesn't exist, it returns False.'''
 
     formatted_data = {}
@@ -14,7 +14,7 @@ def getAccountFromFile(account="") -> dict:
     for account_data in user_accounts:
 
         # Add account names if no account was specified
-        if account == "":
+        if account == 9999:
             formatted_data[account_data["account"]] = 1
 
         # Saves account information if an accounts name matches the specified account
