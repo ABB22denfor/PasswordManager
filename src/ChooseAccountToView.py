@@ -34,7 +34,7 @@ def displayAccounts() -> int:
 
 
 
-def chooseAccount() -> str:
+def chooseAccount(msg: str) -> str:
     '''Shows the current user their accounts, asks which they want to view, and returns the selected account'''
 
     # Prints users accounts
@@ -48,7 +48,7 @@ def chooseAccount() -> str:
     while True:
 
         # Gets user input
-        chosen_account = input("View > ")
+        chosen_account = input(f"{msg} > ")
         chosen_account = chosen_account.strip()
 
         # Prints error message if account doesn't exist
