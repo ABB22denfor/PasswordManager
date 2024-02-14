@@ -9,10 +9,12 @@ def printUserInterface():
     '''Print usable commands'''
 
     print('''Available Commands
-------------------
->s | save new password
->v | view all passwords
-------------------''')
+------------------------------
+> s | save new account
+> v | view all accounts
+> e | edit an account
+> d | delete an account
+------------------------------''')
 
 def handleInput(user_input: str):
     '''(user_input: save or view from InputHandler)
