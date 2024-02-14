@@ -195,7 +195,7 @@ def fourthStep(func):
 
                 # Get account info and print it
                 account_info = getAccountFromFile(chosen_account)
-                printAccountInfo(chosen_account)
+                printAccountInfo(account_info)
 
                 # Wait and clear screen
                 input("Press enter to coninue...")
