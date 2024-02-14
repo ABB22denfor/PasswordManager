@@ -212,18 +212,11 @@ def fourthStep(func):
             elif checkFunction(func, 3):
                 func_and_args = callFunctionInModule("ChooseAccountToView", "chooseAccount", ["Select and account to edit"])
                 chosen_account = func_and_args[0](*func_and_args[1])
+
                 # Gets account information
                 account_info = getAccountFromFile(chosen_account)
 
-                # Prints header
-                print("Account info:".center(30))
-                print("".center(30, "-"))
-
-                # Prints account information
-                for i in account_info:
-                    print(f"* {i.title()}: {account_info[i]}")
-                print("".center(30, "-"))
-                
+                # Calls edit function
                 func_and_args = callFunctionInModule("EditSavedValues", "editValue", [user, account_info])
                 func_and_args[0](*func_and_args[1])
 
