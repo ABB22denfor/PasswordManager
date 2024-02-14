@@ -10,7 +10,7 @@ def printUserInterface():
 
     print("Available Commands".center(30))
     print('''------------------------------
-> s | save new account
+> c | create a new account
 > v | view all accounts
 > e | edit an account
 > d | delete an account
