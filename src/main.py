@@ -190,16 +190,15 @@ def fourthStep(func):
                 chosen_account = func_and_args[0](*func_and_args[1])
 
                 # Stops of no accounts are found
-                if not chosen_account:
-                    continue
+                if chosen_account:
+    
+                    # Get account info and print it
+                    account_info = getAccountFromFile(chosen_account)
+                    printAccountInfo(account_info)
 
-                # Get account info and print it
-                account_info = getAccountFromFile(chosen_account)
-                printAccountInfo(account_info)
-
-                # Wait and clear screen
-                input("Press enter to coninue...")
-                removeLines(8)
+                    # Wait and clear screen
+                    input("Press enter to coninue...")
+                    removeLines(8)
                 
             # Checks if function is "save" 
             elif checkFunction(func, 2):
