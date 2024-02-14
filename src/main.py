@@ -148,14 +148,12 @@ def thirdStep():
             # Calls the input handler and saves the result in a variable
             func = getInput()
 
-            # If the function is a save command, it removes lines
-            if checkFunction(func, 2):
-                removeLines(7)
+            removeLines(9)
 
             # If the function does not exist, print error message and restart the loop
             if not checkFunction(func):
                 input("Command doesn't exist\nPress enter to continue...")
-                removeLines(9)
+                removeLines(11)
                 continue
 
             # If the function exists, it exits the loop

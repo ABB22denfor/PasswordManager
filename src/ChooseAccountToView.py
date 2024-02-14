@@ -9,7 +9,6 @@ from PrintInfo import removeLines
 def displayAccounts() -> int:
     '''Prints the accounts of the current user'''    
 
-    removeLines(7)
     
     # Call the getAccountFromFile, without an account to get the list of all accounts
     account_names = getAccountFromFile()
