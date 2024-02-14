@@ -3,7 +3,7 @@ import os
 
 from GetData import getAccountFromFile
 from login import login
-from PrintInfo import printHeader, removeLines
+from PrintInfo import printHeader, removeLines, printAccountInfo
 from Signup import signup
 from DataCopy import copyDataToTemp
 from InputHandler import getInput
@@ -193,18 +193,14 @@ def fourthStep(func):
                 if not chosen_account:
                     continue
 
-                # Gets account information
+                # Get account info and print it
                 account_info = getAccountFromFile(chosen_account)
+                printAccountInfo(chosen_account)
 
-                # Prints header
-                print("Account info:".center(30))
-                print("".center(30, "-"))
-
-                # Prints account information
-                for i in account_info:
-                    print(f"* {i.title()}: {account_info[i]}")
-                print("".center(30, "-"))
-
+                # Wait and clear screen
+                input("Press enter to coninue...")
+                removeLines(8)
+                
             # Checks if function is "save" 
             elif checkFunction(func, 2):
                 func_and_args = callFunctionInModule("AccountCreator", "createAccount", [])

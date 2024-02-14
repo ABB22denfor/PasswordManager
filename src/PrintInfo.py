@@ -2,6 +2,7 @@
 '''Module for terminal based printing and clearing'''
 
 import os
+from GetData import getAccountFromFile
 
 def printHeader():
     '''Prints the header of the program'''
@@ -32,4 +33,15 @@ def removeLines(lines: int):
 
     # Moves the cursor back up to the first empty line
     print(cursor_up * lines, end="")
+    
+def printAccountInfo(account: dict):
+
+    # Prints header
+    print("Account info:".center(30))
+    print("".center(30, "-"))
+
+    # Prints account information
+    for i in account:
+        print(f"* {i.title()}: {account[i]}")
+    print("".center(30, "-"))
     
