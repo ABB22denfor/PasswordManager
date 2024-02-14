@@ -8,8 +8,8 @@ import importlib
 def printUserInterface():
     '''Print usable commands'''
 
-    print('''Available Commands
-------------------------------
+    print("Available Commands".center(30))
+    print('''------------------------------
 > s | save new account
 > v | view all accounts
 > e | edit an account
