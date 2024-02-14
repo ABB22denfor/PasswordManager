@@ -41,6 +41,8 @@ def deleteAccountFunction(user: str):
         if answer.lower().strip() == "y":
             writeFile("UserData.json", newData)
             copyDataToTemp(user)
-            removeLines(6 + len(newData['users'][user]))
+            input("Account deletion was successful\nPress enter to continue... ")
+            removeLines(8 + len(newData['users'][user]))
             break
-        removeLines(6 + len(newData['users'][user]))
+        input("Account deletion was canceled\nPress enter to continue... ")
+        removeLines(8 + len(newData['users'][user]))
