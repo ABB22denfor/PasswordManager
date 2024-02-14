@@ -1,6 +1,8 @@
 # Password Manager
 #### A lightweight command-line password manager
 
+![img](https://github.com/lucasAxberg/image-repo/blob/main/2024-02-14%2013_25_05-Select%20xbrg%40SW2217_%20~_coding_school_PasswordManager_src.png)
+
 ## Description
 This Command-Line Password Manager is a Python application built with the PyJWT library,
 enabling users to securely manage their account information right from the terminal.
