@@ -148,7 +148,6 @@ def thirdStep():
             # Calls the input handler and saves the result in a variable
             func = getInput()
 
-            removeLines(9)
 
             # If the function does not exist, print error message and restart the loop
             if not checkFunction(func):
@@ -158,6 +157,7 @@ def thirdStep():
 
             # If the function exists, it exits the loop
             else:
+                removeLines(9)
                 break  
 
 
