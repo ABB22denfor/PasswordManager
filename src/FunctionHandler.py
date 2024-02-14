@@ -30,7 +30,7 @@ def handleInput(user_input: str):
 
     return callFunctionInModule(module, function, [])
 
-def callFunctionInModule(module: str, function: str, args: list):
+def callFunctionInModule(module: str, function: str, args: list = []):
     '''(module: name of module containing function, function: name of function, args: list of arguments to be used with function)
     Call function inside of module with specified args'''
 
