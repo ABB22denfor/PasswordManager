@@ -193,7 +193,11 @@ def fourthStep(func):
                 if not chosen_account:
                     continue
 
+                # Get account info and print it
+                account_info = getAccountFromFile(chosen_account)
                 printAccountInfo(chosen_account)
+
+                # Wait and clear screen
                 input("Press enter to coninue...")
                 removeLines(8)
                 

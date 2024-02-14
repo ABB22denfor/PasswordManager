@@ -34,16 +34,14 @@ def removeLines(lines: int):
     # Moves the cursor back up to the first empty line
     print(cursor_up * lines, end="")
     
-def printAccountInfo(account: str):
-    # Gets account information
-    account_info = getAccountFromFile(account)
+def printAccountInfo(account: dict):
 
     # Prints header
     print("Account info:".center(30))
     print("".center(30, "-"))
 
     # Prints account information
-    for i in account_info:
-        print(f"* {i.title()}: {account_info[i]}")
+    for i in account:
+        print(f"* {i.title()}: {account[i]}")
     print("".center(30, "-"))
     
