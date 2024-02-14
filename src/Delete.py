@@ -47,4 +47,6 @@ def deleteAccountFunction(user: str):
         if answer.lower().strip() == "y":
             writeFile("UserData.json", newData)
             copyDataToTemp(user)
+            removeLines(6 + len(newData['users'][user]))
+            break
         removeLines(6 + len(newData['users'][user]))
