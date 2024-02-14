@@ -7,7 +7,7 @@ from PrintInfo import printHeader, removeLines
 from Signup import signup
 from DataCopy import copyDataToTemp
 from InputHandler import getInput
-from FunctionHandler import printUserInterface, handleInput
+from FunctionHandler import printUserInterface, handleInput, callFunctionInModule
 from EditSavedValues import editValue
 from Writer import writeData
 from Delete import deleteAccountFunction
@@ -186,19 +186,17 @@ def fourthStep(func):
     try:
         while True:        
 
-            # Gets the function and arguments from the function handler, and calls the function with those aruments   
-            func_and_arg = handleInput(func)
-            account_variable = func_and_arg[0](*func_and_arg[1])
-
             # Runs if selected function is "view"
             if checkFunction(func, 1):
+                func_and_args = callFunctionInModule("ChooseAccountToView", "chooseAccount", ["Select an account to view"])
+                chosen_account = func_and_args[0](*func_and_args[1])
 
                 # Stops of no accounts are found
-                if not account_variable:
+                if not chosen_account:
                     continue
 
                 # Gets account information
-                account_info = getAccountFromFile(account_variable)
+                account_info = getAccountFromFile(chosen_account)
 
                 # Prints header
                 print("Account info:".center(30))
@@ -209,28 +207,37 @@ def fourthStep(func):
                     print(f"* {i.title()}: {account_info[i]}")
                 print("".center(30, "-"))
 
-
-# TODO: Remove                 
-
-                # Gets user input and clears screen
-                edit_answer = input("Do you want to edit this account (y/n) > ")
-                removeLines(1)
-
-                # If user doesn't want to edit, restart the loop
-                if edit_answer != "y":
-                    continue
-                
-                if not editValue(user, account_info):
-                    continue
-                
-                # Checks if an account has been selected, else restarts the loop
-                                
             # Checks if function is "save" 
             elif checkFunction(func, 2):
+                func_and_args = callFunctionInModule("AccountCreator", "createAccount", [])
+                account_data = func_and_args[0](*func_and_args[1])
 
                 # Calls the write data accont with the returned informaion
-                writeData(account_variable, user)
+                writeData(account_data, user)
+                
+            elif checkFunction(func, 3):
+                func_and_args = callFunctionInModule("ChooseAccountToView", "chooseAccount", ["Select and account to edit"])
+                chosen_account = func_and_args[0](*func_and_args[1])
+                # Gets account information
+                account_info = getAccountFromFile(chosen_account)
 
+                # Prints header
+                print("Account info:".center(30))
+                print("".center(30, "-"))
+
+                # Prints account information
+                for i in account_info:
+                    print(f"* {i.title()}: {account_info[i]}")
+                print("".center(30, "-"))
+                
+                func_and_args = callFunctionInModule("EditSavedValues", "editValue", [user, account_info])
+                func_and_args[0](*func_and_args[1])
+
+            elif checkFunction(func, 4):
+                func_and_args = callFunctionInModule("Delete", "deleteAccountFunction", [user])
+                chosen_account = func_and_args[0](*func_and_args[1])
+                                
+                
             thirdStep()
           
         
