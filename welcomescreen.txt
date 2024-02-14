@@ -1,8 +1,9 @@
- ________________________________________
-/ Welcome to PASS-MAN. The better        \
-| alternative to PW-Man. Use <C-c> to go |
-\ back in menus                          /
- ----------------------------------------
+ _________________________________________
+/ Welcome to PASS-MAN. The better         \
+| alternative to PW-Man. Use <C-c> to go  |
+| back in menus. Press enter when you are |
+\ ready to start                          /
+ -----------------------------------------
     \
      \
                                    .::!!!!!!!:.

@@ -212,12 +212,13 @@ def fourthStep(func):
                 func_and_args = callFunctionInModule("ChooseAccountToView", "chooseAccount", ["Select and account to edit"])
                 chosen_account = func_and_args[0](*func_and_args[1])
 
-                # Gets account information
-                account_info = getAccountFromFile(chosen_account)
+                if chosen_account:
+                    # Gets account information
+                    account_info = getAccountFromFile(chosen_account)
 
-                # Calls edit function
-                func_and_args = callFunctionInModule("EditSavedValues", "editValue", [user, account_info])
-                func_and_args[0](*func_and_args[1])
+                    # Calls edit function
+                    func_and_args = callFunctionInModule("EditSavedValues", "editValue", [user, account_info])
+                    func_and_args[0](*func_and_args[1])
 
             elif checkFunction(func, 4):
                 func_and_args = callFunctionInModule("Delete", "deleteAccountFunction", [user])
@@ -237,4 +238,20 @@ def fourthStep(func):
 
 
 # Calls the first function, wich will start the entire program
+os.system("cls" if os.name == "nt" else "clear")
+print("""
+        ▄███████▄    ▄████████    ▄████████    ▄████████   ▄▄▄▄███▄▄▄▄      ▄████████ ███▄▄▄▄   
+        ███    ███   ███    ███   ███    ███   ███    ███ ▄██▀▀▀███▀▀▀██▄   ███    ███ ███▀▀▀██▄ 
+        ███    ███   ███    ███   ███    █▀    ███    █▀  ███   ███   ███   ███    ███ ███   ███ 
+        ███    ███   ███    ███   ███          ███        ███   ███   ███   ███    ███ ███   ███ 
+      ▀█████████▀  ▀███████████ ▀███████████ ▀███████████ ███   ███   ███ ▀███████████ ███   ███ 
+        ███          ███    ███          ███          ███ ███   ███   ███   ███    ███ ███   ███ 
+        ███          ███    ███    ▄█    ███    ▄█    ███ ███   ███   ███   ███    ███ ███   ███ 
+       ▄████▀        ███    █▀   ▄████████▀   ▄████████▀   ▀█   ███   █▀    ███    █▀   ▀█   █▀  
+""")
+with open("../welcomescreen.txt", "r") as f:
+    for line in f.readlines():
+        print("      " , end="")
+        print(line.replace("\n","").center(96))
+input()
 firstStep()
