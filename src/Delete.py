@@ -10,17 +10,11 @@ def deleteAccount(user: str, account_input: str, data: dict) -> dict:
     '''Deletes the account from the dictionary'''
 
     # Looks through the dictionary and deletes the inputted account
-    try:
-        for i in range(len(data)):
-            if data['users'][user][i]['account'] == account_input:
-                del data['users'][user][i]
-                break
-        else:
-            print("Account does not exist")
-            input("Press enter to continue...")
-            removeLines(3 + len(data['users'][user]))
-            return False
-    except IndexError:
+    for i in range(len(data['users'][user])):
+        if data['users'][user][i]['account'] == account_input:
+            del data['users'][user][i]
+            break
+    else:
         print("Account does not exist")
         input("Press enter to continue...")
         removeLines(3 + len(data['users'][user]))
