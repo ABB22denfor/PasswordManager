@@ -18,4 +18,3 @@ def checkFunction(value: str, register: int = 0) -> bool:
         # Check in all lists
         return any(value in sub_list for sub_list in checkList)
 
-print(checkFunction("view", 2))
