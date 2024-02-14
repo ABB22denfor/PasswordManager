@@ -5,7 +5,7 @@ import os
 import json
 from DataCopy import copyDataToTemp
 from EditPrompt import editPrompt
-from PrintInfo import removeLines
+from PrintInfo import removeLines, printAccountInfo
 
 def editSavedValue(account_name: str, account_data: dict, edited_value: list):
     '''(account_name: name of admin account, account_data: dictionary of account to edit, edited_value: list [Val to Edit, New Val])
@@ -48,7 +48,7 @@ def editSavedValue(account_name: str, account_data: dict, edited_value: list):
 
 def editValue(user: str, data: dict) -> bool:
     '''(user: name of the logged in user, data: dict of the account subject to change)'''
-    
+    printAccountInfo(data)
     account_to_change = editPrompt(data)
     if not account_to_change:
         return False
