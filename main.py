@@ -5,6 +5,7 @@ import sys
 # Add module folder to path
 sys.path.insert(0,os.path.dirname(os.path.abspath(__file__))+'/src')
 
+from PrintWelcome import printWelcomeScreen
 from GetData import getAccountFromFile
 from login import login
 from PrintInfo import printHeader, removeLines, printAccountInfo
@@ -239,5 +240,5 @@ def fourthStep(func):
 
 
 
-
+printWelcomeScreen()
 firstStep()

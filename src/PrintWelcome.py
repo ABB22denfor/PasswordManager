@@ -16,7 +16,7 @@ def printWelcomeScreen():
        ▄████▀        ███    █▀   ▄████████▀   ▄████████▀   ▀█   ███   █▀    ███    █▀   ▀█   █▀  
  """)
 
-    with open(os.path.dirname(os.path.abspath(__file__)) + "/../welcomescreen.txt") as f:
+    with open(os.path.dirname(os.path.abspath(__file__)) + "/../data/welcomescreen.txt") as f:
         for line in f.readlines():
             print("      " , end="")
             print(line.replace("\n","").center(96))
