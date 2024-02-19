@@ -7,7 +7,7 @@ def readFile(file: str):
     '''Reads a .json file and returns the value of it in the form of dict or list'''
 
     # Gets the path to the directory of all the files
-    folder_path = os.path.dirname(os.path.abspath(__file__))
+    folder_path = os.path.dirname(os.path.abspath(__file__)+"/../data")
 
     # Reads the file
     with open(f"{folder_path}/{file}", "r", encoding="utf-8") as f:
