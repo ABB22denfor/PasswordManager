@@ -1,5 +1,9 @@
 # Imports modules
 import os
+import sys
+
+# Add module folder to path
+sys.path.insert(0,os.path.dirname(os.path.abspath(__file__))+'/src')
 
 from GetData import getAccountFromFile
 from login import login
