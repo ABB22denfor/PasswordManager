@@ -21,7 +21,7 @@ def editSavedValue(account_name: str, account_data: dict, edited_value: list):
     folder_path = os.path.dirname(os.path.abspath(__file__))
 
     # Fetch data from UserData
-    with open(f"{folder_path}/UserData.json", "r", encoding="utf-8") as f:
+    with open(f"{folder_path}/../data/UserData.json", "r", encoding="utf-8") as f:
         all_loaded_data = json.loads(f.read())
         for saved_account in all_loaded_data["users"][f"{account_name}"]:
             # Check if passed in account data matches saved data
@@ -41,7 +41,7 @@ def editSavedValue(account_name: str, account_data: dict, edited_value: list):
     all_loaded_data["users"][f"{account_name}"][account_index] = account_to_change
 
     # Overwrite UserData
-    with open(f"{folder_path}/UserData.json", "w", encoding="utf-8") as f:
+    with open(f"{folder_path}/../data/UserData.json", "w", encoding="utf-8") as f:
         f.write(json.dumps(all_loaded_data))
 
     copyDataToTemp(account_name)
