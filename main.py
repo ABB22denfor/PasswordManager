@@ -17,17 +17,25 @@ from EditSavedValues import editValue
 from Writer import writeData
 from Delete import deleteAccountFunction
 from CheckFunction import checkFunction
+from Encode import encodeJSON, decodeJSON
+from jwt.exceptions import DecodeError
 
 # Global variables
 global mode
 global user
+
+PATH = "/../data/UserData.json"
 
 
 # Main code
 
 def firstStep():
     '''The first part of the main code'''
-
+    try:
+        decodeJSON(PATH)
+    except DecodeError:
+        pass
+        
     try:
         global mode
 
@@ -60,6 +68,7 @@ def firstStep():
 
         # Clears screen and exits
         os.system("cls" if os.name == "nt" else "clear")
+        encodeJSON(PATH)
         exit()
 
     # Clears screen and runs next part
