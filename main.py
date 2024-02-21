@@ -13,9 +13,7 @@ from Signup import signup
 from DataCopy import copyDataToTemp
 from InputHandler import getInput
 from FunctionHandler import printUserInterface, handleInput, callFunctionInModule
-from EditSavedValues import editValue
 from Writer import writeData
-from Delete import deleteAccountFunction
 from CheckFunction import checkFunction
 from Encode import encodeJSON, decodeJSON
 from jwt.exceptions import DecodeError
@@ -38,7 +36,7 @@ def firstStep():
         pass
 
     if len(sys.argv) > 1:
-        if handleArgs([*sys.argv]) == 0:
+        if handleArgs(sys.argv) == 0:
             return
         
        
