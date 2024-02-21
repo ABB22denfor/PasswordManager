@@ -19,6 +19,7 @@ from Delete import deleteAccountFunction
 from CheckFunction import checkFunction
 from Encode import encodeJSON, decodeJSON
 from jwt.exceptions import DecodeError
+from ArgsHandler import handleArgs
 
 # Global variables
 global mode
@@ -35,7 +36,14 @@ def firstStep():
         decodeJSON(PATH)
     except DecodeError:
         pass
+
+    if len(sys.argv) > 1:
+        if handleArgs([*sys.argv]) == 0:
+            return
         
+       
+    printWelcomeScreen()
+
     try:
         global mode
 
@@ -249,5 +257,4 @@ def fourthStep(func):
 
 
 
-printWelcomeScreen()
 firstStep()
