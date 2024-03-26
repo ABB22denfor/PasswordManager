@@ -45,15 +45,20 @@ def viewAccount(args: list):
 
 def editAccount(args: list):
     data = readFile("CurrentUser.json")
+    
+    try:
+        for account in data:
+            if args[1][0] == account["account"]:
+                account_data = account
 
-    for account in data:
-        if args[1][0] == account["account"]:
-            account_data = account
-        
-    account_name = args[0][0]
+            account_name = args[0][0]
 
-    field_to_change = input("Edit > ").strip().lower()
-    new_value = input(f"Change {field_to_change} to: ")
+            field_to_change = args[1][1]
+            new_value = args[1][2] 
+    except IndexError:
+        print("ERROR: Not ")
+        return 
+
 
     all_loaded_data = {}
     account_to_change = {}
@@ -84,6 +89,3 @@ def editAccount(args: list):
     # Overwrite UserData
     with open(f"{folder_path}/../data/UserData.json", "w", encoding="utf-8") as f:
         f.write(json.dumps(all_loaded_data))
-
-    copyDataToTemp(account_name)
-
